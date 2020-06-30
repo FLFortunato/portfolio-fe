@@ -1,0 +1,27 @@
+.TodoList {
+  overflow: hidden;
+
+  .listBody {
+    width: 50vh;
+    min-height: 75vh;
+  }
+  .listHead {
+    width: 100%;
+    height: 10vh;
+    background-color: rgba(167, 167, 167, 0.39);
+  }
+
+  .listContent {
+    width: 100%;
+    height: 55vh;
+  }
+  .listFooter {
+    width: 100%;
+    height: 12vh;
+  }
+  .itemDiv {
+    background-color: rgba(175, 175, 175, 0.301);
+    padding: 5px;
+    border-radius: 5px;
+  }
+}

@@ -1,0 +1,20 @@
+.RegisterMain {
+  background: black;
+  font-family: 'Times New Roman', Times, serif;
+  min-width: 100vh;
+  min-height: 100vh;
+
+  .position {
+    position: relative;
+    top: 25%;
+    left: 25%;
+    max-width: 100%;
+  }
+
+  .forgoutPass {
+    width: 410px;
+    a {
+      color: white;
+    }
+  }
+}

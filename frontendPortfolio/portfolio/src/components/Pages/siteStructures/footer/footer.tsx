@@ -1,0 +1,10 @@
+import React from 'react';
+import './footer.scss';
+
+export const Footer = () => {
+  return (
+    <div className='footer '>
+      <h1 className='main'>Footer</h1>
+    </div>
+  );
+};
