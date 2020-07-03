@@ -1,12 +1,13 @@
 export enum Pages {
   Home = '/home',
-  Login = '/login',
+  Login = '/',
   Register = '/registrar',
   About = '/sobre',
   Projects = '/projetos',
   Contact = '/contato',
   Profile = '/perfil',
   TodoList = '/todoList',
-  Confirmation = '/confirmation/:token',
   Posts = '/posts',
+  Forgot = '/esqueceusenha',
+  ResetPass = '/resetarsenha',
 }

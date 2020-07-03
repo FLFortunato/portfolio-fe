@@ -5,7 +5,6 @@ import { InputCS } from '../../Forms/input';
 import * as yup from 'yup';
 import { Userservice } from '../../../services/user.service';
 import { history } from '../../../history';
-import { Alert } from 'react-bootstrap';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 
@@ -86,7 +85,7 @@ export const Login = () => {
               </button>
               <br />
               <div className='d-flex justify-content-between forgoutPass mt-1'>
-                <a href=''>Esqueceu a senha?</a>{' '}
+                <a href='/esqueceusenha'>Esqueceu a senha?</a>{' '}
                 <a href='/registrar'>Registrar</a>
               </div>
             </Form>

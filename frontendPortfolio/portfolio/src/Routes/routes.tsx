@@ -1,5 +1,5 @@
-import React from 'react';
-import { Router, Switch, Route } from 'react-router';
+import React, { useEffect } from 'react';
+import { Router, Switch, Route, withRouter } from 'react-router';
 import { history } from '../history';
 import { Home } from '../components/Pages/home/home';
 import { About } from '../components/Pages/about/about';
@@ -14,6 +14,8 @@ import { TodoListApp } from '../components/Pages/projects/todoList/todoList.proj
 import { Footer } from '../components/Pages/siteStructures/footer/footer';
 import { Header } from '../components/Pages/siteStructures/header/header';
 import { Posts } from '../components/Pages/projects/posts/post';
+import { ForgotPassPage } from '../components/Pages/forgotPass/forgotPass';
+import { ResetPassPage } from '../components/Pages/resetPass/resetPass';
 
 export const Routes = () => {
   const publicRoutes = [
@@ -24,6 +26,14 @@ export const Routes = () => {
     {
       component: Register,
       path: Pages.Register,
+    },
+    {
+      component: ForgotPassPage,
+      path: Pages.Forgot,
+    },
+    {
+      component: ResetPassPage,
+      path: Pages.ResetPass,
     },
   ];
 
@@ -58,10 +68,16 @@ export const Routes = () => {
     },
   ];
 
-  return (
-    <div>
-      <Header />
-      <Router history={history}>
+  const Main = withRouter(({ location }) => {
+    return (
+      <div>
+        {location.pathname !== Pages.Login &&
+        location.pathname !== Pages.Register &&
+        location.pathname !== Pages.ResetPass &&
+        location.pathname !== Pages.Forgot ? (
+          <Header />
+        ) : undefined}
+
         <Switch>
           {publicRoutes.map((route) => {
             return (
@@ -78,8 +94,20 @@ export const Routes = () => {
             );
           })}
         </Switch>
-      </Router>
-      <Footer />
-    </div>
+
+        {location.pathname !== Pages.Login &&
+        location.pathname !== Pages.Register &&
+        location.pathname !== Pages.ResetPass &&
+        location.pathname !== Pages.Forgot ? (
+          <Footer />
+        ) : undefined}
+      </div>
+    );
+  });
+
+  return (
+    <Router history={history}>
+      <Main />
+    </Router>
   );
 };

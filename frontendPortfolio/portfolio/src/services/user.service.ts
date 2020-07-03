@@ -12,6 +12,14 @@ export const Userservice = () => {
     return HttpService().put(`${'user'}/updateProfile/${id}`, data);
   };
 
+  const forgotPass = (data: any): Promise<AxiosResponse<any>> => {
+    return HttpService().post(`${'user'}/forgotpass/pass`, data);
+  };
+
+  const resetPass = (data: any): Promise<AxiosResponse<any>> => {
+    return HttpService().put(`${'user'}/resetpass/pass`, data);
+  };
+
   return {
     create,
     get,
@@ -20,5 +28,7 @@ export const Userservice = () => {
     remove,
     update,
     updateProfile,
+    forgotPass,
+    resetPass,
   };
 };
