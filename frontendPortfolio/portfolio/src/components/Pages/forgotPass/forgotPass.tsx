@@ -5,6 +5,7 @@ import './forgotPass.scss';
 import * as Yup from 'yup';
 import { Userservice } from '../../../services/user.service';
 import { history } from '../../../history';
+import { toast } from 'react-toastify';
 
 export const ForgotPassPage = () => {
   const formRef = useRef<any>();
@@ -16,7 +17,18 @@ export const ForgotPassPage = () => {
           .required('Campo obrigatório'),
       });
 
-      Userservice().forgotPass(data);
+      Userservice()
+        .forgotPass(data)
+        .then((res) => {
+          toast.warning('Verifique seu E-mail', {
+            position: toast.POSITION.BOTTOM_CENTER as any,
+          });
+        })
+        .catch((e) => {
+          toast.dark('E-mail incorreto', {
+            position: toast.POSITION.BOTTOM_CENTER as any,
+          });
+        });
 
       await validSchema.validate(data, { abortEarly: false });
     } catch (error) {

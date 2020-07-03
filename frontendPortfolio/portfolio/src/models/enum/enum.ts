@@ -9,5 +9,5 @@ export enum Pages {
   TodoList = '/todoList',
   Posts = '/posts',
   Forgot = '/esqueceusenha',
-  ResetPass = '/resetarsenha',
+  ResetPass = '/resetarsenha/:token',
 }

@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import { Userservice } from '../../../services/user.service';
 
 export const ResetPassPage = () => {
+  const token = window.location.pathname.replace('/resetarsenha/', '');
   const formRef = useRef<any>();
   const handleSubmit = async (data: any, { reset }: any) => {
     try {
@@ -17,11 +18,12 @@ export const ResetPassPage = () => {
         ),
       });
 
+      Userservice()
+        .resetPass({ password: data.password, token: token })
+        .then((res) => {
+          console.log(res.data);
+        });
       await validSchema.validate(data, { abortEarly: false });
-
-      Userservice().resetPass({
-        password: data.password,
-      });
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         const errorMessages: any = {};
