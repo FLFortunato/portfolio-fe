@@ -1,13 +1,14 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { InputCS } from '../../Forms/input';
 import { Form } from '@unform/web';
 import './forgotPass.scss';
 import * as Yup from 'yup';
 import { Userservice } from '../../../services/user.service';
-import { history } from '../../../history';
+import Recaptcha from 'react-google-recaptcha';
 import { toast } from 'react-toastify';
 
 export const ForgotPassPage = () => {
+  const [captcha, setCaptcha] = useState('');
   const formRef = useRef<any>();
   const handleSubmit = async (data: any, { reset }: any) => {
     try {
@@ -41,6 +42,10 @@ export const ForgotPassPage = () => {
     }
     reset();
   };
+
+  const onCheckCaptcha = (value: any) => {
+    setCaptcha(value);
+  };
   return (
     <div className='container mainForgot'>
       <div className='row'>
@@ -51,8 +56,18 @@ export const ForgotPassPage = () => {
             <div className=''>
               <Form onSubmit={handleSubmit} ref={formRef}>
                 <InputCS name='email' className='form-control' />
-                <button className='btn btn-primary my-3'>Enviar</button>
+                <button
+                  className='btn btn-primary my-3'
+                  disabled={captcha ? false : true}
+                >
+                  Enviar
+                </button>
               </Form>
+              <Recaptcha
+                sitekey='6LfOaqcZAAAAAKqfrBF4GAVkaGcWXU1sp9dhx0KU'
+                onChange={onCheckCaptcha}
+                hl='pt-BR'
+              ></Recaptcha>
             </div>
           </div>
         </div>

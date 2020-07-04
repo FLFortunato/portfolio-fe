@@ -44,7 +44,9 @@ export const Login = () => {
             });
           }
         })
-        .catch((error) => {});
+        .catch((error) => {
+          console.log(error);
+        });
 
       reset();
     } catch (error) {
@@ -53,7 +55,6 @@ export const Login = () => {
 
         error.inner.forEach((err) => (errorMessages[err.path] = err.message));
         formRef.current.setErrors(errorMessages);
-        console.log('Olha aqui==>', errorMessages);
       }
     }
   };

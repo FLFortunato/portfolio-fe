@@ -14,7 +14,7 @@ toast.configure();
 export const Register = () => {
   const [check, setCheck] = useState(Boolean);
   const [isChecked, setIsChecked] = useState('password');
-  const [classs, setClasss] = useState('');
+
   const [captcha, setCaptcha] = useState('');
 
   const formRef = useRef<any>();
@@ -31,6 +31,12 @@ export const Register = () => {
             .min(5, 'Nome deve ter no minímo 5 caracteres')
             .required('Campo nome é obrigatório'),
           password: yup.string().required('Campo senha é obrigatório'),
+          passwordCheck: yup
+            .string()
+            .oneOf(
+              [yup.ref('password'), undefined],
+              'Confirme a senha corretamente'
+            ),
         });
 
         await formSchema.validate(data, {
@@ -58,7 +64,6 @@ export const Register = () => {
 
         error.inner.forEach((err) => (errorMessages[err.path] = err.message));
         formRef.current.setErrors(errorMessages);
-        console.log('Olha aqui==>', errorMessages);
       }
     }
   };
@@ -87,22 +92,22 @@ export const Register = () => {
               <h1 className='text-white mb-5'>Registrar</h1>
               <InputCS
                 name='name'
-                className={`w-50 form-control  ${classs}`}
+                className={`w-50 form-control  `}
                 placeholder='Nome'
               />
               <InputCS
                 name='lastName'
-                className={`w-50 form-control mt-3  ${classs}`}
+                className={`w-50 form-control mt-3  `}
                 placeholder='Sobrenome'
               />
               <InputCS
                 name='email'
-                className={`w-50 form-control mt-3 ${classs}`}
+                className={`w-50 form-control mt-3 `}
                 placeholder='E-mail'
               />
               <InputCS
                 name='password'
-                className={`w-50 form-control mt-3 ${classs}`}
+                className={`w-50 form-control mt-3 `}
                 placeholder='Senha'
                 type={`${isChecked}`}
               />

@@ -21,7 +21,7 @@ export const ResetPassPage = () => {
       Userservice()
         .resetPass({ password: data.password, token: token })
         .then((res) => {
-          console.log(res.data);
+          return;
         });
       await validSchema.validate(data, { abortEarly: false });
     } catch (error) {
