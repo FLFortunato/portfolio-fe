@@ -13,6 +13,7 @@ toast.configure();
 export const Login = () => {
   const [isChecked, setIsChecked] = useState('password');
   const [classs, setClasss] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const formRef = useRef<any>();
   const handleSubmit = async (data: any, { reset }: any) => {
@@ -62,7 +63,7 @@ export const Login = () => {
   return (
     <div className='RegisterMain'>
       <div className='container'>
-        <div className='row justify-content-center'>
+        <div className='row justify-content-center '>
           <div className='col-12 col-sm-6 col-md-9 '>
             <Form
               onSubmit={handleSubmit}
@@ -74,6 +75,7 @@ export const Login = () => {
                 name='email'
                 className={`w-50 form-control mt-3 ${classs}`}
                 placeholder='E-mail'
+                type='email'
               />
               <InputCS
                 name='password'
@@ -85,7 +87,7 @@ export const Login = () => {
                 Login
               </button>
               <br />
-              <div className='d-flex justify-content-between forgoutPass mt-1'>
+              <div className='d-flex justify-content-between  mt-1 w-50'>
                 <a href='/esqueceusenha'>Esqueceu a senha?</a>{' '}
                 <a href='/registrar'>Registrar</a>
               </div>

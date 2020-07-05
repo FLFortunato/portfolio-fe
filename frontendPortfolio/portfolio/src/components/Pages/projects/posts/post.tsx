@@ -65,34 +65,38 @@ export const Posts = () => {
     setReloadList([]);
   };
   const postHtml = (
-    <Form onSubmit={handleForm} ref={formRef} id='formid'>
-      <InputCS
-        name='title'
-        placeholder='Titúlo'
-        className='form-control w-50 mt-3'
-      />
-      <div className='d-flex mt-3 '>
-        <select
-          name='type'
-          form='formid'
-          onChange={(e) => selectType(e.target.value)}
-          className='form-control w-50'
-        >
-          <option value='1'>Elogio</option>
-          <option value='0'>Crítica</option>
-        </select>
+    <div className='row'>
+      <div className='col-lg-6 col-sm-12'>
+        <Form onSubmit={handleForm} ref={formRef} id='formid'>
+          <InputCS
+            name='title'
+            placeholder='Titúlo'
+            className='form-control  mt-3'
+          />
+          <div className='d-flex mt-3 '>
+            <select
+              name='type'
+              form='formid'
+              onChange={(e) => selectType(e.target.value)}
+              className='form-control '
+            >
+              <option value='1'>Elogio</option>
+              <option value='0'>Crítica</option>
+            </select>
+          </div>
+          <TextAreaCS
+            placeholder='Comentário'
+            className='form-control mt-3'
+            rows={5}
+            name='content'
+            form='formid'
+          />
+          <button type='submit' className='btn btn-success my-3 w-50'>
+            Enviar
+          </button>
+        </Form>
       </div>
-      <TextAreaCS
-        placeholder='Comentário'
-        className='form-control w-50 mt-3'
-        rows={5}
-        name='content'
-        form='formid'
-      />
-      <button type='submit' className='btn btn-success my-3'>
-        Enviar
-      </button>
-    </Form>
+    </div>
   );
 
   return (

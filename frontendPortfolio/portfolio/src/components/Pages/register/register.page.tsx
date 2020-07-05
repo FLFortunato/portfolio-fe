@@ -79,45 +79,51 @@ export const Register = () => {
   const onCheckCaptcha = (value: any) => {
     setCaptcha(value);
   };
+
+  const inputFields = [
+    { name: 'name', className: 'w-50 form-control mt-3', placeholder: 'Nome' },
+    {
+      name: 'lastName',
+      className: 'w-50 form-control mt-3',
+      placeholder: 'Sobrenome',
+    },
+    {
+      name: 'email',
+      className: 'w-50 form-control mt-3',
+      placeholder: 'E-mail',
+    },
+    {
+      name: 'password',
+      className: 'w-50 form-control mt-3',
+      placeholder: 'Senha',
+    },
+    {
+      name: 'passwordCheck',
+      className: 'w-50 form-control mt-3',
+      placeholder: 'Confirme a senha',
+    },
+  ];
   return (
     <div className='RegisterMain'>
       <div className='container'>
-        <div className='row justify-content-center'>
-          <div className='col-12 '>
+        <div className='row '>
+          <div className='col-sm-12 col-md-8 col-lg-12 '>
             <Form
               onSubmit={handleSubmit}
               className='form-group position align-items-center '
               ref={formRef}
             >
               <h1 className='text-white mb-5'>Registrar</h1>
-              <InputCS
-                name='name'
-                className={`w-50 form-control  `}
-                placeholder='Nome'
-              />
-              <InputCS
-                name='lastName'
-                className={`w-50 form-control mt-3  `}
-                placeholder='Sobrenome'
-              />
-              <InputCS
-                name='email'
-                className={`w-50 form-control mt-3 `}
-                placeholder='E-mail'
-              />
-              <InputCS
-                name='password'
-                className={`w-50 form-control mt-3 `}
-                placeholder='Senha'
-                type={`${isChecked}`}
-              />
-              <InputCS
-                name='passwordCheck'
-                className='w-50 form-control mt-3'
-                placeholder='Confirme a senha'
-                type={`${isChecked}`}
-              />
-              <div className='mt-2'></div>
+              {inputFields.map((inp, i) => {
+                return (
+                  <InputCS
+                    name={inp.name}
+                    placeholder={inp.placeholder}
+                    className={inp.className}
+                  />
+                );
+              })}
+
               <button
                 className={`btn btn-success rounded mt-3 w-50 `}
                 disabled={captcha ? false : true}

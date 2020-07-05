@@ -44,13 +44,13 @@ export const Contact = () => {
     { name: 'email', placeholder: 'E-mail' },
   ];
   return (
-    <div className='Contact '>
+    <div className='Contact container '>
       <div className='contact '>
-        <h1 className='mt-5 ml-5'>
-          <b>FALE COMIGO</b>
-        </h1>
-        <div className='row'>
-          <div className='col-6  ml-5'>
+        <div className='row my-5'>
+          <div className='col-6  '>
+            <h1 className=''>
+              <b>FALE COMIGO</b>
+            </h1>
             <Form onSubmit={handleSubmit} ref={formRef} id='formid'>
               {inputs.map((inp, i) => {
                 return (
@@ -69,41 +69,39 @@ export const Contact = () => {
                 form='formid'
               />
 
-              <button className='btn btn-success w-25 mt-3'>Enviar</button>
+              <button className='btn btn-success w-100 mt-3'>Enviar</button>
             </Form>
-            <div className='captcha mt-4'>
-              <Recaptcha
-                sitekey='6LfOaqcZAAAAAKqfrBF4GAVkaGcWXU1sp9dhx0KU'
-                onChange={onCheckCaptcha}
-                hl='pt-BR'
-              ></Recaptcha>
-            </div>
           </div>
-          <div className='col-5 '>
-            <div className='row'>
-              <div className='col-12 heightSize'></div>
-              <div className='col-6'>
-                <div className='d-flex '>
-                  <h3 className='material-icons iconFontSize marginB'>call</h3>
 
-                  <h4 className='text-secondary'>(31) 99591-3071</h4>
-                </div>
-                <div className='d-flex mt-4'>
-                  <h3 className='material-icons iconFontSize marginB'>email</h3>
+          <div className='row'>
+            <div className='col'></div>
+            <div className='col-sm-12 col-lg-12 mt-5'>
+              <div className='d-flex flex-row '>
+                <h3 className='material-icons iconFontSize marginB'>call</h3>
 
-                  <a
-                    href='mailto:   filipifortunato@gmail.com'
-                    target='_blank'
-                    className='ml-1'
-                  >
-                    <h4 className='text-secondary'>
-                      filipifortunato@gmail.com
-                    </h4>
-                  </a>
-                </div>
+                <h4 className='text-secondary'>(31) 99591-3071</h4>
+              </div>
+              <div className='d-flex mt-4'>
+                <h3 className='material-icons iconFontSize marginB'>email</h3>
+
+                <a
+                  href='mailto:   filipifortunato@gmail.com'
+                  target='_blank'
+                  className='ml-1'
+                  rel='noopener noreferrer'
+                >
+                  <h4 className='text-secondary'>filipifortunato@gmail.com</h4>
+                </a>
               </div>
             </div>
           </div>
+        </div>
+        <div className='captcha my-5'>
+          <Recaptcha
+            sitekey='6LfOaqcZAAAAAKqfrBF4GAVkaGcWXU1sp9dhx0KU'
+            onChange={onCheckCaptcha}
+            hl='pt-BR'
+          ></Recaptcha>
         </div>
       </div>
     </div>
