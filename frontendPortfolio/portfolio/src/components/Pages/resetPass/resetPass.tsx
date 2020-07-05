@@ -14,7 +14,7 @@ export const ResetPassPage = () => {
         password: Yup.string().required('Campo obrigatório'),
         checkpassword: Yup.string().oneOf(
           [Yup.ref('password'), undefined],
-          'Passwords must match'
+          'Senha não confere'
         ),
       });
 

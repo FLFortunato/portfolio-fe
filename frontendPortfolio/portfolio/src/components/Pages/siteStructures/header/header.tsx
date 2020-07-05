@@ -1,36 +1,44 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './header.scss';
+import $ from 'jquery';
+import { Pages } from '../../../../models/enum/enum';
 
 export const Header = () => {
   const logOut = () => {
     localStorage.clear();
   };
+
+  const [menuToolbarOpen, setMenuToolbarOpen] = useState(false);
+
+  useEffect(() => {
+    if (menuToolbarOpen) {
+      $('#mobile_menu').addClass('menu_expanded');
+    } else {
+      $('#mobile_menu').removeClass('menu_expanded');
+    }
+  }, [menuToolbarOpen]);
+
+  const links = [
+    { path: Pages.Home, text: 'Home' },
+    { path: Pages.About, text: 'Sobre' },
+    { path: Pages.Projects, text: 'Projetos' },
+    { path: Pages.Contact, text: 'Contato' },
+    { path: Pages.Profile, text: 'Perfil' },
+    { path: '', text: 'Sair', func: logOut },
+  ];
   return (
     <div className='header'>
       <div className='main d-flex justify-content-between'>
         <h1 className='mt-4 m-3'> {'<F/>'}</h1>
         <nav className='mt-4 m-3'>
           <ul className='d-flex ulStyle'>
-            <li className='m-2'>
-              <a href='/home'> Home</a>
-            </li>
-            <li className='m-2'>
-              <a href='/sobre'> Sobre</a>
-            </li>
-            <li className='m-2'>
-              <a href='/projetos'> Projetos</a>
-            </li>
-            <li className='m-2'>
-              <a href='/contato'> Contato</a>
-            </li>
-            <li className='m-2'>
-              <a href='/perfil'> Perfil</a>
-            </li>
-            <li className='m-2'>
-              <div onClick={logOut}>
-                <a href=''>Sair</a>
-              </div>
-            </li>
+            {links.map((l, i) => {
+              return (
+                <li onClick={l.func} key={i} className='mx-2 mt-2'>
+                  <a href={l.path}>{l.text}</a>
+                </li>
+              );
+            })}
           </ul>
         </nav>
       </div>

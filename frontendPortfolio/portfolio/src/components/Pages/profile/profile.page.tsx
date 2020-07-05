@@ -25,13 +25,7 @@ export const Profile = () => {
   }, [cepNumber]);
 
   const handleSubmit = (data: any) => {
-    Userservice()
-      .updateProfile(user, { ...data, cep: cepNumber })
-      .then(() => {
-        toast.success('Dados alterados', {
-          position: toast.POSITION.BOTTOM_CENTER as any,
-        });
-      });
+    console.log(data);
   };
 
   const personalDatas = [
@@ -39,92 +33,95 @@ export const Profile = () => {
     { name: 'name', placeholder: 'Nome' },
     { name: 'lastName', placeholder: 'Sobrenome' },
   ];
+  const readCep = (e: any) => {
+    setCepNumber(e.target.value);
+  };
+
+  const addressDatas = [
+    {
+      name: 'street',
+      className: 'w-100 form-control mt-3',
+      placeholder: 'Endereço',
+      readOnly: true,
+    },
+    {
+      name: 'neighborhood',
+      className: 'w-100 form-control mt-3',
+      placeholder: 'Bairro',
+      readOnly: true,
+    },
+    {
+      name: 'cep',
+      className: 'w-100 form-control mt-3',
+      placeholder: 'Cep',
+      readOnly: false,
+    },
+    {
+      name: 'number',
+      className: 'w-100 form-control mt-3',
+      placeholder: 'Nº',
+      readOnly: false,
+    },
+    {
+      name: 'city',
+      className: 'w-100 form-control mt-3',
+      placeholder: 'Cidade',
+      readOnly: true,
+    },
+    {
+      name: 'state',
+      className: 'w-100 form-control mt-3',
+      placeholder: 'Estado',
+      readOnly: true,
+    },
+    {
+      name: 'complement',
+      className: 'w-100 form-control mt-3',
+      placeholder: 'Complemento',
+      readOnly: false,
+    },
+  ];
+
   return (
-    <div>
-      <div className='container MainProfile'>
-        <div className='body'>
+    <div className='container'>
+      <div className='row'>
+        <div className='col-sm-12 col-lg-6 my-3'>
           <h2>Perfil</h2>
-          <div className='row'>
-            <div className='col-12'>
-              <Form
-                onSubmit={handleSubmit}
-                className='form-group '
-                ref={formRef}
-              >
-                <div>
-                  <h6 className='mt-3'>Dados Pessoais</h6>
-                  {personalDatas.map((p) => {
-                    return (
-                      <InputCS
-                        name={p.name}
-                        className={`w-50 form-control mt-3 `}
-                        placeholder={p.placeholder}
-                        readOnly={p.readOnly}
-                      />
-                    );
-                  })}
-                </div>
-
-                <div className='mt-5 '>
-                  <h6>Endereço</h6>
-                  <div className='divWidth d-flex justify-content-between'>
-                    <InputCS
-                      name='street'
-                      className={` w-100 form-control mt-3 `}
-                      placeholder='Endereço'
-                      readOnly
-                    />
-                    <InputCS
-                      name='neighborhood'
-                      className={` w-100 form-control mt-3 `}
-                      placeholder='Bairro'
-                      readOnly
-                    />
-                  </div>
-                  <div className='divWidth d-flex justify-content-between'>
-                    <input
-                      name='cep'
-                      type='text'
-                      className='form-control w-40 mt-3'
-                      onChange={(e) => setCepNumber(e.target.value)}
-                      placeholder='cep'
-                    />
-                    <InputCS
-                      name='number'
-                      className={` w-100 form-control mt-3 `}
-                      placeholder='Nº'
-                    />
-                  </div>
-                  <div className='d-flex justify-content-between divWidth'>
-                    <InputCS
-                      name='city'
-                      className={`w-100 form-control mt-3 $`}
-                      placeholder='Cidade'
-                      readOnly
-                    />
-                    <InputCS
-                      name='state'
-                      className={`w-100 form-control mt-3 $`}
-                      placeholder='Estado'
-                      readOnly
-                    />
-                  </div>
+          <Form onSubmit={handleSubmit} className='form-group ' ref={formRef}>
+            <div>
+              <h6 className='mt-3'>Dados Pessoais</h6>
+              {personalDatas.map((p, i) => {
+                return (
                   <InputCS
-                    name='complement'
-                    className={`w-50 form-control mt-3 $`}
-                    placeholder='Complemento'
+                    key={i}
+                    name={p.name}
+                    className={`w-100 form-control mt-3 `}
+                    placeholder={p.placeholder}
+                    readOnly={p.readOnly}
                   />
-                </div>
-
-                <button
-                  className='btn btn-success rounded mt-3 w-50'
-                  type='submit'
-                >
-                  Atualizar
-                </button>
-              </Form>
+                );
+              })}
             </div>
-          </div>
+
+            <div className='mt-5 '>
+              <h6>Endereço</h6>
+              {addressDatas.map((a, i) => {
+                return (
+                  <InputCS
+                    key={i}
+                    name={a.name}
+                    placeholder={a.placeholder}
+                    className={a.className}
+                    readOnly={a.readOnly}
+                  />
+                );
+              })}
+            </div>
+
+            <button className='btn btn-success rounded mt-3 w-50' type='submit'>
+              Atualizar
+            </button>
+          </Form>
         </div>
       </div>
     </div>

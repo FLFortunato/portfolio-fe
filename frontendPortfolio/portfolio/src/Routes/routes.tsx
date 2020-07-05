@@ -79,14 +79,20 @@ export const Routes = () => {
         ) : undefined}
 
         <Switch>
-          {publicRoutes.map((route) => {
+          {publicRoutes.map((route, i) => {
             return (
-              <Route exact component={route.component} path={route.path} />
+              <Route
+                key={i}
+                exact
+                component={route.component}
+                path={route.path}
+              />
             );
           })}
-          {privateRoutes.map((route) => {
+          {privateRoutes.map((route, i) => {
             return (
               <PrivateRoute
+                key={i}
                 exact
                 component={route.component}
                 path={route.path}

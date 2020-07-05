@@ -30,12 +30,12 @@ export const About = () => {
             </div>
             <div className='col-lg-4'>
               <div>
-                {' '}
                 <h5 className='mt-5'>Ferramentas Back-end</h5>
                 <p>NodeJs</p>
                 <p>Sequelize</p>
                 <p>Typescript</p>
                 <p>PostgreSql</p>
+                <p>Express</p>
               </div>
             </div>
           </div>
