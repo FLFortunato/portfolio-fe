@@ -1,6 +1,7 @@
 .header {
   color: white;
   .main {
+    position: relative;
     min-height: 10vh;
     width: 100%;
     // background: rgb(1, 4, 2);
@@ -18,6 +19,33 @@
     a {
       color: white;
       font-size: 16px;
+    }
+  }
+
+  .invisible {
+    display: none;
+  }
+
+  .icon_size {
+    cursor: pointer;
+    position: relative;
+    font-size: 40px;
+    align-self: center;
+    right: 10px;
+  }
+
+  .responsive_menu {
+    background-color: rgb(230, 224, 224);
+    position: absolute;
+    z-index: 20;
+    width: 100%;
+    height: 80%;
+
+    li {
+      list-style: none;
+      a {
+        color: black;
+      }
     }
   }
 }

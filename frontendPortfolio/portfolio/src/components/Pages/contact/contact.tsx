@@ -47,7 +47,7 @@ export const Contact = () => {
     <div className='Contact container '>
       <div className='contact '>
         <div className='row my-5'>
-          <div className='col-6  '>
+          <div className='col-lg-6 col-sm-12  '>
             <h1 className=''>
               <b>FALE COMIGO</b>
             </h1>

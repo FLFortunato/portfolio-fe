@@ -96,11 +96,13 @@ export const Register = () => {
       name: 'password',
       className: 'w-50 form-control mt-3',
       placeholder: 'Senha',
+      type: 'password',
     },
     {
       name: 'passwordCheck',
       className: 'w-50 form-control mt-3',
       placeholder: 'Confirme a senha',
+      type: 'password',
     },
   ];
   return (
@@ -120,6 +122,7 @@ export const Register = () => {
                     name={inp.name}
                     placeholder={inp.placeholder}
                     className={inp.className}
+                    type={inp.type}
                   />
                 );
               })}

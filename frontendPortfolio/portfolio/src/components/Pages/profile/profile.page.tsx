@@ -25,7 +25,18 @@ export const Profile = () => {
   }, [cepNumber]);
 
   const handleSubmit = (data: any) => {
-    console.log(data);
+    Userservice()
+      .updateProfile(user, data)
+      .then(() => {
+        toast.success('Atualização efetuada', {
+          position: toast.POSITION.BOTTOM_CENTER as any,
+        });
+      })
+      .catch(() => {
+        toast.error('Atualização não efetuada', {
+          position: toast.POSITION.BOTTOM_CENTER as any,
+        });
+      });
   };
 
   const personalDatas = [
@@ -33,9 +44,6 @@ export const Profile = () => {
     { name: 'name', placeholder: 'Nome' },
     { name: 'lastName', placeholder: 'Sobrenome' },
   ];
-  const readCep = (e: any) => {
-    setCepNumber(e.target.value);
-  };
 
   const addressDatas = [
     {

@@ -8,15 +8,8 @@ export const Header = () => {
     localStorage.clear();
   };
 
-  const [menuToolbarOpen, setMenuToolbarOpen] = useState(false);
-
-  useEffect(() => {
-    if (menuToolbarOpen) {
-      $('#mobile_menu').addClass('menu_expanded');
-    } else {
-      $('#mobile_menu').removeClass('menu_expanded');
-    }
-  }, [menuToolbarOpen]);
+  const [bigScreenNav, setBigScreenNav] = useState(true);
+  const [phoneMenu, setPhoneMenu] = useState(false);
 
   const links = [
     { path: Pages.Home, text: 'Home' },
@@ -26,11 +19,18 @@ export const Header = () => {
     { path: Pages.Profile, text: 'Perfil' },
     { path: '', text: 'Sair', func: logOut },
   ];
+
+  useEffect(() => {
+    if (window.screen.width <= 360) {
+      setBigScreenNav(false);
+    }
+  }, []);
+
   return (
     <div className='header'>
       <div className='main d-flex justify-content-between'>
         <h1 className='mt-4 m-3'> {'<F/>'}</h1>
-        <nav className='mt-4 m-3'>
+        <nav className={`mt-4 m-3 ${bigScreenNav ? '' : 'invisible'}`}>
           <ul className='d-flex ulStyle'>
             {links.map((l, i) => {
               return (
@@ -41,6 +41,29 @@ export const Header = () => {
             })}
           </ul>
         </nav>
+        <span
+          className={`material-icons icon_size ${
+            !bigScreenNav ? '' : 'invisible'
+          }`}
+          onClick={() => setPhoneMenu(!phoneMenu)}
+        >
+          menu
+        </span>
+      </div>
+      <div
+        className={`responsive_menu text-center ${
+          phoneMenu ? '' : 'invisible'
+        }`}
+      >
+        <ul>
+          {links.map((l, i) => {
+            return (
+              <li onClick={l.func} key={i} className=' p-4'>
+                <a href={l.path}>{l.text}</a>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </div>
   );
