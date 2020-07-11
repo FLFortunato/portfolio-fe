@@ -47,27 +47,29 @@ export const ForgotPassPage = () => {
     setCaptcha(value);
   };
   return (
-    <div className='container mainForgot'>
-      <div className='row'>
-        <div className='col-4'>
-          <div>
-            <h3 className='my-5'>Esqueceu sua senha?</h3>
-            <p>Digite seu email abaixo: </p>
-            <div className=''>
-              <Form onSubmit={handleSubmit} ref={formRef}>
-                <InputCS name='email' className='form-control' />
-                <button
-                  className='btn btn-primary my-3'
-                  disabled={captcha ? false : true}
-                >
-                  Enviar
-                </button>
-              </Form>
-              <Recaptcha
-                sitekey='6LfOaqcZAAAAAKqfrBF4GAVkaGcWXU1sp9dhx0KU'
-                onChange={onCheckCaptcha}
-                hl='pt-BR'
-              ></Recaptcha>
+    <div className=' mainForgot'>
+      <div className='container'>
+        <div className='row'>
+          <div className='col-sm-12 col-lg-4'>
+            <div>
+              <h3 className='my-5'>Esqueceu sua senha?</h3>
+              <p>Digite seu email abaixo: </p>
+              <div className=''>
+                <Form onSubmit={handleSubmit} ref={formRef}>
+                  <InputCS name='email' className='form-control' />
+                  <button
+                    className='btn btn-primary my-3'
+                    disabled={captcha ? false : true}
+                  >
+                    Enviar
+                  </button>
+                </Form>
+                <Recaptcha
+                  sitekey='6LfOaqcZAAAAAKqfrBF4GAVkaGcWXU1sp9dhx0KU'
+                  onChange={onCheckCaptcha}
+                  hl='pt-BR'
+                ></Recaptcha>
+              </div>
             </div>
           </div>
         </div>

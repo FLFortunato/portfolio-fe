@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { InputCS } from '../../Forms/input';
 import { Form } from '@unform/web';
-
+import './resetPass.scss';
 import * as Yup from 'yup';
 import { Userservice } from '../../../services/user.service';
 
@@ -35,31 +35,33 @@ export const ResetPassPage = () => {
     reset();
   };
   return (
-    <div className='container mainForgot'>
-      <div className='row'>
-        <div className='col-4'>
-          <div>
-            <h3 className='my-5'>Digite sua nova senha:</h3>
-            <p>Senha: </p>
-            <div className=''>
-              <Form onSubmit={handleSubmit} ref={formRef}>
-                <div>
-                  <InputCS
-                    name='password'
-                    className='form-control'
-                    type='password'
-                  />
-                </div>
-                <div className='mt-4'>
-                  <p>Confirme a senha:</p>
-                  <InputCS
-                    name='checkpassword'
-                    className='form-control'
-                    type='password'
-                  />
-                </div>
-                <button className='btn btn-primary my-3'>Enviar</button>
-              </Form>
+    <div className=' mainResetPass'>
+      <div className='container'>
+        <div className='row'>
+          <div className='col-sm-12 col-lg-4'>
+            <div>
+              <h3 className=''>Digite sua nova senha:</h3>
+              <p>Senha: </p>
+              <div className=''>
+                <Form onSubmit={handleSubmit} ref={formRef}>
+                  <div>
+                    <InputCS
+                      name='password'
+                      className='form-control'
+                      type='password'
+                    />
+                  </div>
+                  <div className='mt-4'>
+                    <p>Confirme a senha:</p>
+                    <InputCS
+                      name='checkpassword'
+                      className='form-control'
+                      type='password'
+                    />
+                  </div>
+                  <button className='btn btn-primary my-3'>Enviar</button>
+                </Form>
+              </div>
             </div>
           </div>
         </div>

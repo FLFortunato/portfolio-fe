@@ -84,23 +84,23 @@ export const Register = () => {
     { name: 'name', className: 'w-50 form-control mt-3', placeholder: 'Nome' },
     {
       name: 'lastName',
-      className: 'w-50 form-control mt-3',
+
       placeholder: 'Sobrenome',
     },
     {
       name: 'email',
-      className: 'w-50 form-control mt-3',
+
       placeholder: 'E-mail',
     },
     {
       name: 'password',
-      className: 'w-50 form-control mt-3',
+
       placeholder: 'Senha',
       type: 'password',
     },
     {
       name: 'passwordCheck',
-      className: 'w-50 form-control mt-3',
+
       placeholder: 'Confirme a senha',
       type: 'password',
     },
@@ -108,8 +108,8 @@ export const Register = () => {
   return (
     <div className='RegisterMain'>
       <div className='container'>
-        <div className='row '>
-          <div className='col-sm-12 col-md-8 col-lg-12 '>
+        <div className='row justify-content-center '>
+          <div className='col-sm-12 col-md-8 col-lg-8 my-5 '>
             <Form
               onSubmit={handleSubmit}
               className='form-group position align-items-center '
@@ -121,14 +121,14 @@ export const Register = () => {
                   <InputCS
                     name={inp.name}
                     placeholder={inp.placeholder}
-                    className={inp.className}
+                    className='w-100 form-control mt-3'
                     type={inp.type}
                   />
                 );
               })}
 
               <button
-                className={`btn btn-success rounded mt-3 w-50 `}
+                className={`btn btn-success rounded mt-3 w-100 `}
                 disabled={captcha ? false : true}
               >
                 Registrar

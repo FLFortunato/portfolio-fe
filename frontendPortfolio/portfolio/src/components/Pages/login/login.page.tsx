@@ -61,10 +61,10 @@ export const Login = () => {
   };
 
   return (
-    <div className='RegisterMain'>
+    <div className='loginMain'>
       <div className='container'>
-        <div className='row justify-content-center '>
-          <div className='col-12 col-sm-6 col-md-9 '>
+        <div className='row justify-content-center'>
+          <div className='col-lg-6 col-sm-12 col-md-9 my-5'>
             <Form
               onSubmit={handleSubmit}
               className='form-group position '
@@ -73,21 +73,21 @@ export const Login = () => {
               <h1 className='text-white mb-5'>Login</h1>
               <InputCS
                 name='email'
-                className={`w-50 form-control mt-3 ${classs}`}
+                className={`w-100 form-control mt-3 ${classs}`}
                 placeholder='E-mail'
                 type='email'
               />
               <InputCS
                 name='password'
-                className={`w-50 form-control mt-3 ${classs}`}
+                className={`w-100 form-control mt-3 ${classs}`}
                 placeholder='Senha'
                 type={`${isChecked}`}
               />
-              <button className='btn btn-success rounded mt-5 w-50'>
+              <button className='btn btn-success rounded mt-5 w-100'>
                 Login
               </button>
               <br />
-              <div className='d-flex justify-content-between  mt-1 w-50'>
+              <div className='d-flex justify-content-between  mt-1 w-100'>
                 <a href='/esqueceusenha'>Esqueceu a senha?</a>{' '}
                 <a href='/registrar'>Registrar</a>
               </div>
