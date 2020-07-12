@@ -16,6 +16,7 @@ import { Header } from '../components/Pages/siteStructures/header/header';
 import { Posts } from '../components/Pages/projects/posts/post';
 import { ForgotPassPage } from '../components/Pages/forgotPass/forgotPass';
 import { ResetPassPage } from '../components/Pages/resetPass/resetPass';
+import { ShoppingList } from '../components/Pages/projects/shoppingList/shoppingList';
 
 export const Routes = () => {
   const publicRoutes = [
@@ -34,6 +35,10 @@ export const Routes = () => {
     {
       component: ResetPassPage,
       path: Pages.ResetPass,
+    },
+    {
+      component: ShoppingList,
+      path: Pages.ShoppingList,
     },
   ];
 
