@@ -1,31 +1,86 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import './shoppingList.scss';
 import { InputCS } from '../../../Forms/input';
 import { Form } from '@unform/web';
+import { ProductsService } from '../../../../services/products.service';
+import { ProductsInterface } from '../../../../models/products.model';
+import { EditModal } from './modal';
 export const ShoppingList = () => {
   const formRef = useRef<any>();
+  const userId = JSON.parse(localStorage.getItem('userid') || '');
 
   const [typeOfFood, setTypeOfFood] = useState('');
-
-  const [products, setProducts] = useState();
+  const [totalPrice, setTotalPrice] = useState(Number);
+  const [products, setProducts] = useState<ProductsInterface[]>([]);
+  const [renderArr, setRenderArr] = useState([]);
 
   const headerInputs = [
-    { label: 'Produto', name: 'product', size: 'w-100' },
+    { label: 'Produto', name: 'name', size: 'w-100' },
     { label: 'Qtd', name: 'qtd', type: 'number', size: 'w-100' },
-    { label: 'Preço', name: 'price', type: 'number', size: 'w-100' },
+    {
+      label: 'Preço',
+      name: 'price',
+      type: 'number',
+      size: 'w-100',
+      step: '0.01',
+    },
   ];
 
   const options = [
-    { value: '0', label: 'Grãos' },
-    { value: '1', label: 'Bebidas' },
-    { value: '2', label: 'Frios' },
-    { value: '3', label: 'Verduras' },
-    { value: '4', label: 'Laticínios' },
+    { value: '1', label: 'Legumes' },
+    { value: '2', label: 'Verduras' },
+    { value: '3', label: 'Carnes' },
+    { value: '4', label: 'Grãos' },
+    { value: '5', label: 'Bebidas' },
+    { value: '6', label: 'Laticínios' },
+    { value: '7', label: 'Frios' },
+    { value: '8', label: 'Congelados' },
   ];
 
   const handleSubmit = (data: any) => {
-    console.log({ ...data, type: Number(typeOfFood) });
+    const cat = Number(typeOfFood);
+
+    console.log('CATEGORY ==>', cat);
+    ProductsService()
+      .create(userId, cat, data)
+      .then((res) => {
+        console.log(res.data);
+      });
+
+    setRenderArr([...renderArr]);
   };
+
+  const deleteAction = (id: any) => {
+    ProductsService().remove(id);
+  };
+
+  const prod = async () => {
+    try {
+      const result = await ProductsService()
+        .getById(userId)
+        .then((res) => {
+          return res.data;
+        });
+      setProducts(result);
+    } catch (error) {
+      return error;
+    }
+  };
+
+  useEffect(() => {
+    prod();
+    const totals = [];
+    for (let i = 0; i < products.length; i++) {
+      totals.push(products[i].total);
+    }
+
+    const totalArr = totals.reduce((a, v) => {
+      return a + v;
+    }, 0);
+
+    products.length > 0 && setTotalPrice(totalArr);
+  }, [renderArr, totalPrice]);
+
   const headerHtml = (
     <div className='d-flex row'>
       <div className='d-flex w-100 col'>
@@ -41,6 +96,7 @@ export const ShoppingList = () => {
                     name={h.name}
                     className={`form-control ${h.size}`}
                     type={h.type}
+                    step={h.step}
                   />
                 </div>
               </div>
@@ -54,16 +110,47 @@ export const ShoppingList = () => {
         name='what'
         onChange={(e) => setTypeOfFood(e.target.value)}
       >
-        <option value='null' selected={true} disabled>
+        <option value='Categoria' defaultValue='Categoria'>
           Categoria
         </option>
         {options.map((o, i) => {
-          return <option value={o.value}>{o.label}</option>;
+          return (
+            <option value={o.value} key={i}>
+              {o.label}
+            </option>
+          );
         })}
       </select>
     </div>
   );
+  const bodyHtml = (
+    <div>
+      {products.map((p, i) => {
+        return (
+          <div
+            className='d-flex justify-content-between ml-3 my-2  w-100'
+            key={i}
+          >
+            <div className='d-flex justify-content-between w-50 '>
+              <p className=''>{p.name}</p>
+              <p>{p.qtd}</p> <p className='ml-5'>R${p.price.toFixed(2)}</p>{' '}
+              <p>R${p.total.toFixed(2)}</p>
+            </div>
+            <div className='d-flex justify-content-around w-25'>
+              <button
+                className='btn btn-danger'
+                onClick={() => deleteAction(p.id)}
+              >
+                <span className='material-icons'>delete_outline</span>
+              </button>
 
+              <EditModal data={p} />
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
   return (
     <div className='mainShoppingList'>
       <div className='container'>
@@ -79,17 +166,18 @@ export const ShoppingList = () => {
                 {headerHtml}
               </Form>
             </div>
-            <div className='body'>
-              <div className='d-flex justify-content-between mx-5'>
-                <p>item</p>
-                <div className='d-flex justify-content-between w-25'>
-                  <p>Qtd</p> <p>preco</p>
+            <div className='body py-2'>
+              <div className='d-flex justify-content-between ml-3  w-100'>
+                <div className='d-flex justify-content-between w-50'>
+                  <p>Produto</p> <p>Quantidade</p> <p>Preço</p> <p>Total</p>
                 </div>
+                <div className='d-flex justify-content-around w-25'></div>
               </div>
+              {bodyHtml}
+              <p>total: {totalPrice}</p>
             </div>
             <div className='footer'>
-              {' '}
-              <button className='btn btn-primary w-100' form='form3'>
+              <button className='btn btn-primary w-2' form='form3'>
                 Send
               </button>
             </div>
