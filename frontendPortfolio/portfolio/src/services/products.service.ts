@@ -13,7 +13,7 @@ type Products = {
 };
 export const ProductsService = () => {
   const route = 'products';
-  const { update, getById, remove } = BaseService(route);
+  const { update, remove } = BaseService(route);
 
   const create = (
     userId: any,
@@ -21,6 +21,9 @@ export const ProductsService = () => {
     data: any
   ): Promise<AxiosResponse<any>> => {
     return HttpService().post(`${route}/${userId}/${catId}`, data);
+  };
+  const getById = (id: any): Promise<AxiosResponse<any>> => {
+    return HttpService().get(`${route}/byUser/${id}`);
   };
 
   return { update, create, getById, remove };

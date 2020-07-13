@@ -5,9 +5,11 @@ import { Form } from '@unform/web';
 import { ProductsService } from '../../../../services/products.service';
 import { ProductsInterface } from '../../../../models/products.model';
 import { EditModal } from './modal';
+
+const userId = JSON.parse(localStorage.getItem('userid') || '');
+
 export const ShoppingList = () => {
   const formRef = useRef<any>();
-  const userId = JSON.parse(localStorage.getItem('userid') || '');
 
   const [typeOfFood, setTypeOfFood] = useState('');
   const [totalPrice, setTotalPrice] = useState(Number);
@@ -52,37 +54,20 @@ export const ShoppingList = () => {
 
   const deleteAction = (id: any) => {
     ProductsService().remove(id);
-  };
-
-  const prod = async () => {
-    try {
-      const result = await ProductsService()
-        .getById(userId)
-        .then((res) => {
-          return res.data;
-        });
-      setProducts(result);
-    } catch (error) {
-      return error;
-    }
+    setRenderArr([]);
   };
 
   useEffect(() => {
-    prod();
-    const totals = [];
-    for (let i = 0; i < products.length; i++) {
-      totals.push(products[i].total);
-    }
-
-    const totalArr = totals.reduce((a, v) => {
-      return a + v;
-    }, 0);
-
-    products.length > 0 && setTotalPrice(totalArr);
+    ProductsService()
+      .getById(userId)
+      .then((res) => {
+        setProducts(res.data);
+      });
   }, [renderArr, totalPrice]);
 
   const headerHtml = (
     <div className='d-flex row'>
+      <p>Under development</p>
       <div className='d-flex w-100 col'>
         {headerInputs.map((h, i) => {
           return (

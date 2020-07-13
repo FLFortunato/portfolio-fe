@@ -16,7 +16,7 @@ export const BaseService = (url: string) => {
   };
 
   const getById = (id: any): Promise<AxiosResponse<any>> => {
-    return HttpService().get(`${url}/byUser/${id}`);
+    return HttpService().get(`${url}/${id}`);
   };
 
   const remove = (id: number): Promise<AxiosResponse<any>> => {

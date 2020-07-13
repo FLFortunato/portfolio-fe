@@ -71,6 +71,10 @@ export const Routes = () => {
       component: Posts,
       path: Pages.Posts,
     },
+    {
+      component: ShoppingList,
+      path: Pages.ShoppingList,
+    },
   ];
 
   const Main = withRouter(({ location }) => {
