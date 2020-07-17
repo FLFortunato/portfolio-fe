@@ -6,7 +6,7 @@ import { ProductsService } from '../../../../services/products.service';
 import { ProductsInterface } from '../../../../models/products.model';
 import { EditModal } from './modal';
 
-const userId = JSON.parse(localStorage.getItem('userid') || '');
+const userId = (localStorage.getItem('userid') || '');
 
 export const ShoppingList = () => {
   const formRef = useRef<any>();

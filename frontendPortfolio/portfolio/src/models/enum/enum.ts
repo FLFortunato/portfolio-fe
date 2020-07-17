@@ -11,4 +11,5 @@ export enum Pages {
   Forgot = '/esqueceusenha',
   ResetPass = `/resetarsenha/:param`,
   ShoppingList = '/shoppingList',
+  Table="/table"
 }

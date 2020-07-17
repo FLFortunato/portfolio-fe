@@ -17,6 +17,7 @@ import { Posts } from '../components/Pages/projects/posts/post';
 import { ForgotPassPage } from '../components/Pages/forgotPass/forgotPass';
 import { ResetPassPage } from '../components/Pages/resetPass/resetPass';
 import { ShoppingList } from '../components/Pages/projects/shoppingList/shoppingList';
+import {TableFrag} from '../components/Pages/projects/tables/tables'
 
 export const Routes = () => {
   const publicRoutes = [
@@ -39,6 +40,10 @@ export const Routes = () => {
     {
       component: ShoppingList,
       path: Pages.ShoppingList,
+    },
+    {
+      component: TableFrag,
+      path: Pages.Table,
     },
   ];
 
