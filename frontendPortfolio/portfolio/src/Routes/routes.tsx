@@ -18,11 +18,12 @@ import { ForgotPassPage } from '../components/Pages/forgotPass/forgotPass';
 import { ResetPassPage } from '../components/Pages/resetPass/resetPass';
 import { ShoppingList } from '../components/Pages/projects/shoppingList/shoppingList';
 import {TableFrag} from '../components/Pages/projects/tables/tables'
+import { AleatoryPage } from '../components/Pages/aleatory/aleatory';
 
 export const Routes = () => {
   const publicRoutes = [
     {
-      component: Login,
+      component: AleatoryPage,
       path: Pages.Login,
     },
     {
