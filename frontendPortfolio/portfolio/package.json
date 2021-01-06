@@ -20,7 +20,7 @@
     "@types/yup": "^0.29.1",
     "@unform/core": "^2.1.0",
     "@unform/web": "^2.1.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.0",
     "cep-promise": "^3.0.9",
     "formik": "^2.1.4",
